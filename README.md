@@ -1,19 +1,21 @@
-|__Localization and Perception
+#Localization and Perception
 >
-|                             |__Monte Carlo
+##Monte Carlo
 >
-|                             |__Kalman Filters  
+##Kalman Filters  
 >
-|                             |__Particle Filters
+##Particle Filters
 >
-|__plan                       |__SLAM   
+##SLAM  
 >
-|      |__search
+#plan                       
 >
-|               |__A*
+#search
 >
-|               |__Dynamic programming 
+##A*
 >
-|__control
+##Dynamic programming 
 >
-|        |__PID
+#control
+>
+##PID
