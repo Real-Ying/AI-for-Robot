@@ -12,7 +12,7 @@
 
 *A*
 
-*Dynamic programming 
+Dynamic programming 
 
 **control**
 
