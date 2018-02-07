@@ -1,7 +1,7 @@
 # 定位函数用到了以下参数:
 # colors:
 #       2D 列表, 'R' (红色网格l) or 'G' (绿色网格)
-# measurements:
+# measurements:    
 #       机器人得到的测量值列表 ，'R' or 'G'
 # motions:
 #       机器人采取的动作列表，[dy，dx]，dx表示x方向的变化（正向右移动），dy表  # 示y方向的变化（正向下移动）
