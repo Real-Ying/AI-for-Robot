@@ -1,0 +1,78 @@
+# 定位函数用到了以下参数:
+# colors:
+#       2D 列表, 'R' (红色网格l) or 'G' (绿色网格)
+# measurements:
+#       机器人得到的测量值列表 ，'R' or 'G'
+# motions:
+#       机器人采取的动作列表，[dy，dx]，dx表示x方向的变化（正向右移动），dy表  # 示y方向的变化（正向下移动）
+#
+# sensor_right:
+#       测量是正确的概率，浮动在0和1之间，不正确的概率是1-sensor_right
+# p_move:
+#       执行移动命令的概率，浮动在0和1之间，运动命令失败的概率（仍保持原地）是
+# 1-p_move; 机器人在本编程中不会超过目的地；
+#
+# 输出：函数返回与颜色列表尺寸相同的2D概率分布列表，最初是均匀的概率分布
+#
+# 每一步先行动，再测量,且任何行列是循环的
+ 
+def localize(colors,measurements,motions,sensor_right,p_move):
+    sensor_wrong = 1.0 - sensor_right
+    p_stay = 1.0 - p_move
+
+    if len(measurements) != len(motions)
+        raise ValueError,"error in size of measurement/motion vector"
+ 
+    pinit = 1.0 / float(len(colors)) / float(len(colors[0]))
+    p = [[pinit for row in range(len(colors[0]))] for col in range(len(colors))]
+   
+    for k in range(len(measurements)):
+        p = move(p,measurements[k])
+        p = sense(p,colors,measurements[k])
+   
+    show(p)
+ 
+    def sense(p,colors,measurement):
+        aux = [[0.0 for row in range(len(0)) for col in range (len(p))]] 
+        s = 0.0
+        for i in range(len(p)):
+            for j in range(len(p[i])):
+                hit = (measurement == colors[i][j])
+                aux = p[i][j]*(hit*sensor_right + (1-hit)*sensor_wrong)
+                s+=aux[i][j]
+        for i in range(len(aux)):
+            for j in range(len(p[i])):
+                aux[i][j] /= s
+    return aux
+ 
+    def move(p,motion):
+        aux = [[0.0 for row in range(len(0)) for col in range (len(p))]]
+        for i in range(len(p)):
+            for j in range(len(p[i])):
+                aux = (p_move*p[i-motion[0] % len(p)][j - motion[1] % len(p[i])] + (p_stay*p[i][j]
+                return aux
+
+    def show(p):
+        rows = ['[' + ','.join(map(lambda x: '{0:.5f}'.format(x),r)) + ']' for r in p]
+        print '[' + ',\n '.join(rows) + ']'
+    def show(p)
+        for i in range(len(p))
+            print p[i]
+ 
+
+    
+#############################################################
+# For the following test case, your output should be 
+# [[0.01105, 0.02464, 0.06799, 0.04472, 0.02465],
+#  [0.00715, 0.01017, 0.08696, 0.07988, 0.00935],
+#  [0.00739, 0.00894, 0.11272, 0.35350, 0.04065],
+#  [0.00910, 0.00715, 0.01434, 0.04313, 0.03642]]
+# (within a tolerance of +/- 0.001 for each entry)
+ 
+  colors = [['R','G','G','R','R'],
+           ['R','R','G','R','R'],
+           ['R','R','G','G','R'],
+           ['R','R','R','R','R']]
+  measurements = ['G','G','G','G','G']
+  motions = [[0,0],[0,1],[1,0],[1,0],[0,1]]
+  p = localize(colors,measurements,motions,sensor_right = 0.7, p_move = 0.8)
