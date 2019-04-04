@@ -17,3 +17,5 @@ Dynamic programming
 **control**
 
 *PID
+
+more information in my bolog : real-ying
